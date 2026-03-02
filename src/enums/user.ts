@@ -1,0 +1,5 @@
+export enum USER_ROLES {
+  ADMIN = 'ADMIN',
+  PLAYER = 'PLAYER',
+  FIELD_OWNER = 'FIELD_OWNER',
+}
