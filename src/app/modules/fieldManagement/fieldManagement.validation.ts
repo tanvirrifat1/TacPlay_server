@@ -75,3 +75,7 @@ export const fieldManagementZodSchema = z.object({
 
   swift_code: z.string().min(1, 'SWIFT code is required'),
 });
+
+export const FieldManagementValidation = {
+  fieldManagementZodSchema,
+};
