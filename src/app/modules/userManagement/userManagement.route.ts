@@ -14,4 +14,10 @@ router.post(
   UserControllers.updateUserLocation,
 );
 
+router.get(
+  '/nearby-users',
+  auth(USER_ROLES.ADMIN, USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER),
+  UserControllers.findUsersNear,
+);
+
 export const UserManagementRoutes = router;

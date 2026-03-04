@@ -21,6 +21,26 @@ const updateUserLocationIntoDB = async (
   return result;
 };
 
+const findUsersNear = async (
+  latitude: number,
+  longitude: number,
+  maxDistanceMeterskm = 500,
+) => {
+  const users = await User.find({
+    location: {
+      $near: {
+        $geometry: {
+          type: 'Point',
+          coordinates: [longitude, latitude], // ⚠ order important
+        },
+        $maxDistance: maxDistanceMeterskm * 1000,
+      },
+    },
+  });
+
+  return users;
+};
 export const UserServices = {
   updateUserLocationIntoDB,
+  findUsersNear,
 };
