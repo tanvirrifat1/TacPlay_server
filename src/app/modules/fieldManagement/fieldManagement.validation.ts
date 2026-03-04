@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Types } from 'mongoose';
 
 // Package Schema
 const packageSchema = z.object({
@@ -27,7 +26,7 @@ const packageSchema = z.object({
 });
 
 // Main Field Schema
-export const fieldManagementZodSchema = z.object({
+const fieldManagementZodSchema = z.object({
   arena_name: z.string().min(1, 'Arena name is required'),
 
   arena_description: z.string().min(1, 'Arena description is required'),
@@ -76,6 +75,46 @@ export const fieldManagementZodSchema = z.object({
   swift_code: z.string().min(1, 'SWIFT code is required'),
 });
 
+const packageSchemaUpdate = z
+  .object({
+    package_name: z.string().min(1, 'Package name cannot be empty'),
+    price: z.number().min(0, 'Price must be positive'),
+    pak_des: z.number(),
+    item: z.string().min(1, 'Item cannot be empty'),
+  })
+  .partial(); // 👈 makes all package fields optional
+
+// Main Field Schema
+export const fieldManagementZodSchemaUpdate = z
+  .object({
+    arena_name: z.string().min(1, 'Arena name is required'),
+    arena_description: z.string().min(1, 'Arena description is required'),
+    cuntry: z.string().min(1, 'Country is required'),
+    city: z.string().min(1, 'City is required'),
+    full_address: z.string().min(1, 'Full address is required'),
+    min_player_team: z
+      .number()
+      .min(1, 'Minimum player per team must be at least 1'),
+    max_player_team: z.number(),
+    min_player_sessions: z.number().min(1),
+    max_player_sessions: z.number(),
+    default_session_duration: z.string().min(1, 'Session duration is required'),
+    base_price_player: z.number().min(0, 'Base price must be positive'),
+    allow_socal_matches: z.boolean(),
+    allow_ranked_matches: z.boolean(),
+    packages: z.array(packageSchemaUpdate).optional(),
+    business_name: z.string().min(1, 'Business name is required'),
+    business_type: z.string().min(1, 'Business type is required'),
+    contact_number: z.string().min(1, 'Contact number is required'),
+    holder_name: z.string().min(1, 'Account holder name is required'),
+    bank_name: z.string().min(1, 'Bank name is required'),
+    account_number: z.string().min(1, 'Account number is required'),
+    routing_number: z.string().min(1, 'Routing number is required'),
+    swift_code: z.string().min(1, 'SWIFT code is required'),
+  })
+  .partial();
+
 export const FieldManagementValidation = {
   fieldManagementZodSchema,
+  fieldManagementZodSchemaUpdate,
 };

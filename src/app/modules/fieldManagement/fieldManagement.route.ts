@@ -21,28 +21,35 @@ router.post(
   },
 );
 
-// router.patch(
-//   '/update/:id',
-//   auth(USER_ROLES.ADMIN),
-//   fileUploadHandler,
-//   (req: Request, res: Response, next: NextFunction) => {
-//     const { imagesToDelete, data } = req.body;
+router.patch(
+  '/update/:id',
+  auth(USER_ROLES.FIELD_OWNER),
+  fileUploadHandler,
+  (req: Request, res: Response, next: NextFunction) => {
+    const { imagesToDelete, data } = req.body;
 
-//     if (!data && imagesToDelete) {
-//       req.body = { imagesToDelete };
-//       return ProductController.updateProduct(req, res, next);
-//     }
+    if (!data && imagesToDelete) {
+      req.body = { imagesToDelete };
+      return FieldManagementController.updateFiled(req, res, next);
+    }
 
-//     if (data) {
-//       const parsedData = ProductValidation.updateProductSchema.parse(
-//         JSON.parse(data)
-//       );
+    if (data) {
+      const parsedData =
+        FieldManagementValidation.fieldManagementZodSchemaUpdate.parse(
+          JSON.parse(data),
+        );
 
-//       req.body = { ...parsedData, imagesToDelete };
-//     }
+      req.body = { ...parsedData, imagesToDelete };
+    }
 
-//     return ProductController.updateProduct(req, res, next);
-//   }
-// );
+    return FieldManagementController.updateFiled(req, res, next);
+  },
+);
+
+router.get(
+  '/details/:id',
+  auth(USER_ROLES.FIELD_OWNER, USER_ROLES.ADMIN, USER_ROLES.PLAYER),
+  FieldManagementController.getDetails,
+);
 
 export const FieldManagementRoutes = router;
