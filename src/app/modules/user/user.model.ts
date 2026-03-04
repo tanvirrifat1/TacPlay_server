@@ -30,7 +30,7 @@ const userSchema = new Schema<IUser, UserModal>(
       minlength: 8,
     },
 
-    location: {
+    address: {
       type: String,
       required: false,
     },
@@ -58,6 +58,15 @@ const userSchema = new Schema<IUser, UserModal>(
       type: Boolean,
       default: false,
     },
+    location: {
+      type: {
+        type: String,
+        enum: ['Point'],
+      },
+      coordinates: {
+        type: [Number],
+      },
+    },
 
     authentication: {
       type: {
@@ -80,14 +89,15 @@ const userSchema = new Schema<IUser, UserModal>(
   { timestamps: true },
 );
 
+userSchema.index({ location: '2dsphere' });
+
 userSchema.statics.isExistUserById = async (id: string) => {
   const isExist = await User.findById(id);
   return isExist;
 };
 
-userSchema.statics.isExistUserByEmail = async (email: string) => {
-  const isExist = await User.findOne({ email });
-  return isExist;
+userSchema.statics.isExistUserByEmail = async function (email: string) {
+  return await User.findOne({ email }).select('+password');
 };
 
 //account check

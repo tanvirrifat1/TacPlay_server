@@ -8,10 +8,14 @@ export type IUser = {
   password: string;
   verified: boolean;
   image: string;
-  location?: string;
+  address?: string;
   phone: string;
   subscription: boolean;
   isFreeTrial: boolean;
+  location: {
+    type: { type: String; enum: ['Point']; default: 'Point' };
+    coordinates: [number, number];
+  };
   authentication?: {
     isResetPassword: boolean;
     oneTimeCode: number;
