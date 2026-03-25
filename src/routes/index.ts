@@ -6,6 +6,7 @@ import { FieldManagementRoutes } from '../app/modules/fieldManagement/fieldManag
 import { UserManagementRoutes } from '../app/modules/userManagement/userManagement.route';
 import { InboxRoutes } from '../app/modules/inbox/inbox.route';
 import { MessageRoutes } from '../app/modules/message/message.route';
+import { ChatFileImageRoutes } from '../app/modules/chatFileImage/chatFileImage.route';
 
 const router = express.Router();
 
@@ -17,6 +18,7 @@ const apiRoutes = [
   { path: '/userManagement', route: UserManagementRoutes },
   { path: '/inbox', route: InboxRoutes },
   { path: '/message', route: MessageRoutes },
+  { path: '/chatFileImage', route: ChatFileImageRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));

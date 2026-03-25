@@ -4,4 +4,6 @@ export type IMessage = {
   senderId: Types.ObjectId;
   inboxId: Types.ObjectId;
   message: string;
+  image: string;
+  video: string;
 };

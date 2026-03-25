@@ -114,6 +114,4 @@ const createInboxToDB = async (payload: IInbox) => {
 
 export const InboxService = {
   createInboxToDB,
-  //   getAllInboxFromDb,
-  //   deleteInbox,
 };

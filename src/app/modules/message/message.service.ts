@@ -1,6 +1,8 @@
 import { SortOrder } from 'mongoose';
 import { Message } from './message.model';
 import { Inbox } from '../inbox/inbox.model';
+import ApiError from '../../../errors/ApiError';
+import { StatusCodes } from 'http-status-codes';
 
 const getAllMessages = async (id: string, query: Record<string, unknown>) => {
   const {
