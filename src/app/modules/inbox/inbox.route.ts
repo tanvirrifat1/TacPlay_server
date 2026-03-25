@@ -1,0 +1,14 @@
+import express from 'express';
+import { InboxController } from './inbox.controller';
+import auth from '../../middlewares/auth';
+import { USER_ROLES } from '../../../enums/user';
+
+const router = express.Router();
+
+router.post(
+  '/send-message/:id',
+  auth(USER_ROLES.ADMIN, USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER),
+  InboxController.createInboxToDb,
+);
+
+export const InboxRoutes = router;

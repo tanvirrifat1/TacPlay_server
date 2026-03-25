@@ -1,0 +1,27 @@
+import { StatusCodes } from 'http-status-codes';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponse from '../../../shared/sendResponse';
+import { InboxService } from './inbox.service';
+
+const createInboxToDb = catchAsync(async (req, res) => {
+  const { id: receiverId } = req.params as { id: string };
+  const senderId = req.user.id as string;
+
+  const value: any = {
+    senderId,
+    receiverId,
+  };
+
+  const result = await InboxService.createInboxToDB(value);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Inbox created successfully',
+    data: result,
+  });
+});
+
+export const InboxController = {
+  createInboxToDb,
+};
