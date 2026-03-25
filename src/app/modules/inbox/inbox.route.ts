@@ -11,4 +11,10 @@ router.post(
   InboxController.createInboxToDb,
 );
 
+router.get(
+  '/get-inbox',
+  auth(USER_ROLES.ADMIN, USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER),
+  InboxController.getAllInboxs,
+);
+
 export const InboxRoutes = router;

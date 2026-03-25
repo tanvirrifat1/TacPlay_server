@@ -22,6 +22,17 @@ const createInboxToDb = catchAsync(async (req, res) => {
   });
 });
 
+const getAllInboxs = catchAsync(async (req, res) => {
+  const result = await InboxService.getAllInboxFromDb(req.user.id, req.query);
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Inbox retrived successfully',
+    data: result,
+  });
+});
+
 export const InboxController = {
   createInboxToDb,
+  getAllInboxs,
 };

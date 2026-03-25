@@ -6,8 +6,6 @@ import { ChatFileImageController } from './chatFileImage.controller';
 
 const router = express.Router();
 
-console.log('in');
-
 router.post(
   '/upload-image',
   fileUploadHandler,
