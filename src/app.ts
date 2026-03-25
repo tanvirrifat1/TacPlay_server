@@ -29,13 +29,6 @@ app.use(express.static('uploads'));
 //router
 app.use('/api/v1', router);
 
-//live response
-// app.get('/', (req: Request, res: Response) => {
-//   res.send(
-//     '<h1 style="text-align:center; color:#A55FEF; font-family:Verdana;">Hey, How can I assist you today!</h1>',
-//   );
-// });
-
 app.get('/', (req: Request, res: Response) => {
   res.send(designs);
 });

@@ -12,6 +12,8 @@ export type IUser = {
   phone: string;
   subscription: boolean;
   isFreeTrial: boolean;
+  appleId: string;
+  googleId: string;
   location: {
     type: { type: String; enum: ['Point']; default: 'Point' };
     coordinates: [number, number];

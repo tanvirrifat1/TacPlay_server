@@ -31,7 +31,7 @@ const findUsersNear = async (
       $near: {
         $geometry: {
           type: 'Point',
-          coordinates: [longitude, latitude], // ⚠ order important
+          coordinates: [longitude, latitude],
         },
         $maxDistance: maxDistanceMeterskm * 1000,
       },
@@ -40,6 +40,7 @@ const findUsersNear = async (
 
   return users;
 };
+
 export const UserServices = {
   updateUserLocationIntoDB,
   findUsersNear,

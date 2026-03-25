@@ -44,7 +44,7 @@ const googleLogin = async ({
       fullName,
       googleId: uid,
       image: newImage,
-      role: USER_ROLES.USER,
+      role: USER_ROLES.PLAYER,
       verified: true,
     });
   } else {
@@ -96,10 +96,10 @@ const appleLogin = async (payload: { token: string }) => {
 
     // Step 2 — Prepare user fields
     const userFields: Partial<IUser> = {
-      fullName: appleData.fullName || '',
+      name: appleData.name || '',
       email: appleData.email,
       appleId: appleData.sub,
-      role: USER_ROLES.USER,
+      role: USER_ROLES.PLAYER,
       verified: true,
     };
 
@@ -113,7 +113,7 @@ const appleLogin = async (payload: { token: string }) => {
     } else if (!user.appleId) {
       user = await User.findByIdAndUpdate(
         user._id,
-        { ...userFields, name: userFields.fullName || user.fullName },
+        { ...userFields, name: userFields.name || user.name },
         { new: true },
       );
     }

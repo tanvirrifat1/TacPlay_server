@@ -53,6 +53,10 @@ const userSchema = new Schema<IUser, UserModal>(
       type: Boolean,
       default: true,
     },
+    googleId: {
+      type: String,
+      required: false,
+    },
 
     subscription: {
       type: Boolean,
@@ -67,7 +71,10 @@ const userSchema = new Schema<IUser, UserModal>(
         type: [Number],
       },
     },
-
+    appleId: {
+      type: String,
+      required: false,
+    },
     authentication: {
       type: {
         isResetPassword: {
