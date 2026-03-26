@@ -32,7 +32,18 @@ const getAllInboxs = catchAsync(async (req, res) => {
   });
 });
 
+const deleteInbox = catchAsync(async (req, res) => {
+  const result = await InboxService.deleteInbox(req.params.id);
+  sendResponse(res, {
+    success: true,
+    statusCode: StatusCodes.OK,
+    message: 'Inbox deleted successfully',
+    data: result,
+  });
+});
+
 export const InboxController = {
   createInboxToDb,
   getAllInboxs,
+  deleteInbox,
 };

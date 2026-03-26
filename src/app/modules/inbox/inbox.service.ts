@@ -116,4 +116,5 @@ const deleteInbox = async (id: string) => {
 export const InboxService = {
   createInboxToDB,
   getAllInboxFromDb,
+  deleteInbox,
 };

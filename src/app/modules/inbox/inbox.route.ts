@@ -17,4 +17,10 @@ router.get(
   InboxController.getAllInboxs,
 );
 
+router.delete(
+  '/delete-inbox/:id',
+  auth(USER_ROLES.ADMIN, USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER),
+  InboxController.deleteInbox,
+);
+
 export const InboxRoutes = router;
