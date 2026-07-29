@@ -8,6 +8,7 @@ import { InboxRoutes } from '../app/modules/inbox/inbox.route';
 import { MessageRoutes } from '../app/modules/message/message.route';
 import { ChatFileImageRoutes } from '../app/modules/chatFileImage/chatFileImage.route';
 import { WishListRoutes } from '../app/modules/wishlist/wishlist.route';
+import { CatedoryRoutes } from '../app/modules/catedory/catedory.route';
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ const apiRoutes = [
   { path: '/message', route: MessageRoutes },
   { path: '/chatFileImage', route: ChatFileImageRoutes },
   { path: '/wishlist', route: WishListRoutes },
+  { path: '/catedory', route: CatedoryRoutes },
 ];
 
 apiRoutes.forEach(route => router.use(route.path, route.route));
