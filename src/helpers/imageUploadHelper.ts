@@ -40,3 +40,12 @@ export const uploadToCloudinary = (
     stream.end(fileBuffer);
   });
 };
+
+export const deleteFromCloudinary = async (publicId: string) => {
+  try {
+    await cloudinary.uploader.destroy(publicId);
+  } catch (error) {
+    console.error('Failed to delete old image from Cloudinary:', error);
+    // eita throw na kore just log korlei valo, update flow block hobe na
+  }
+};

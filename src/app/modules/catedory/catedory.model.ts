@@ -5,6 +5,7 @@ const CatedoryModel = new Schema<ICatedory>(
     name: { type: String, required: true },
     type: { type: String, required: true },
     image: { type: String, required: false },
+    imagePublicId: { type: String, required: false },
   },
   {
     timestamps: true,
