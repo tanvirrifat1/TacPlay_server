@@ -19,4 +19,10 @@ router.post(
   CatedoryController.createCatedory,
 );
 
+router.patch(
+  '/update/:id',
+  upload.single('image'),
+  CatedoryController.updateCatedory,
+);
+
 export const CatedoryRoutes = router;

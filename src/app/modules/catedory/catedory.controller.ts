@@ -41,6 +41,41 @@ const createCatedory = catchAsync(async (req, res) => {
   });
 });
 
+const updateCatedory = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  if (!req.body.data) {
+    throw new ApiError(StatusCodes.BAD_REQUEST, 'Data field is required');
+  }
+
+  const parsedData = JSON.parse(req.body.data);
+  const { name, type } = parsedData;
+
+  const updatePayload: {
+    name?: string;
+    type?: string;
+    image?: string;
+    imagePublicId?: string;
+  } = { name, type };
+
+  if (req.file) {
+    const uploadResult = await uploadToCloudinary(
+      req.file.buffer,
+      'categories',
+    );
+    updatePayload.image = uploadResult.secure_url;
+    updatePayload.imagePublicId = uploadResult.public_id;
+  }
+
+  const result = await CatedoryService.updateCatedory(id, updatePayload);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Category updated successfully',
+    data: result,
+  });
+});
+
 export const CatedoryController = {
   createCatedory,
+  updateCatedory,
 };
