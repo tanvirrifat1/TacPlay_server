@@ -75,7 +75,20 @@ const updateCatedory = catchAsync(async (req, res) => {
   });
 });
 
+const getAllCategories = catchAsync(async (req, res) => {
+  const result = await CatedoryService.getAllCategories(req.query);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Categories retrieved successfully',
+    data: result,
+  });
+});
+
 export const CatedoryController = {
   createCatedory,
   updateCatedory,
+  getAllCategories,
+
 };

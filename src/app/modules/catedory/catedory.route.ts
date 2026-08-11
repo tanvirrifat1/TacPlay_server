@@ -25,4 +25,6 @@ router.patch(
   CatedoryController.updateCatedory,
 );
 
+router.get('/all-categories', CatedoryController.getAllCategories);
+
 export const CatedoryRoutes = router;
