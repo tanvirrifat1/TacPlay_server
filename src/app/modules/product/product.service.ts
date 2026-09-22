@@ -130,6 +130,8 @@ const deleteProduct = async (id: string) => {
     await deleteFromCloudinary(isExisting.imagePublicId);
   }
 
+  console.log(isExisting.images);
+
   // Clean up multiple images if any
   if (isExisting.images && isExisting.images.length > 0) {
     for (const img of isExisting.images) {
