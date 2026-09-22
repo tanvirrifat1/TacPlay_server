@@ -7,13 +7,13 @@ const router = express.Router();
 
 router.get(
   '/get-all',
-  auth(USER_ROLES.USER),
+  auth(USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER, USER_ROLES.ADMIN),
   NotificationController.getNotificationToDb
 );
 
 router.patch(
   '/update-read',
-  auth(USER_ROLES.USER),
+  auth(USER_ROLES.PLAYER, USER_ROLES.FIELD_OWNER, USER_ROLES.ADMIN),
   NotificationController.readNotification
 );
 
